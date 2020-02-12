@@ -40,12 +40,16 @@ jobs:
       # Set boost root to choco installed path
       BOOST_ROOT: C:\local\boost_1_67_0
       BOOST_LIBRARYDIR: C:\local\boost_1_67_0\lib64-msvc-14.1\
+      BOOST_ROOT_1_67_0: C:\local\boost_1_67_0\lib64-msvc-14.1\
     steps:
     - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: |
+        echo %PATH%
     # install boost with choco due to https://github.com/actions/virtual-environments/issues/370
     - name: Install dependencies
       run: |
-        choco install openssl -boost-msvc-14.1
+        choco install openssl  boost-msvc-14.1
     - name: Build & install
       shell: bash
       run: |
