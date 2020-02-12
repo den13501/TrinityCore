@@ -192,6 +192,7 @@
 if (NOT Boost_NO_BOOST_CMAKE)
   # If Boost_DIR is not set, look for BOOSTROOT and BOOST_ROOT as alternatives,
   # since these are more conventional for Boost.
+  message("Boost $ENV{Boost_DIR} v $ENV{BOOST_ROOT} v $ENV{BOOSTROOT} asd3 found.")
   if ("$ENV{Boost_DIR}" STREQUAL "")
     if (NOT "$ENV{BOOST_ROOT}" STREQUAL "")
       set(ENV{Boost_DIR} $ENV{BOOST_ROOT})
@@ -204,10 +205,12 @@ if (NOT Boost_NO_BOOST_CMAKE)
   # Note that args are passed in the Boost_FIND_xxxxx variables, so there is no
   # need to delegate them to this find_package call.
   find_package(Boost QUIET NO_MODULE)
+  message("Boost ${Boost_DIR} asd2 found.")
   mark_as_advanced(Boost_DIR)
 
   # If we found boost-cmake, then we're done.  Print out what we found.
   # Otherwise let the rest of the module try to find it.
+  message("Boost ${Boost_DIR} v ${Boost_FOUND} v ${Boost_FIND_COMPONENTS} asd1 found.")
   if (Boost_FOUND)
     message("Boost ${Boost_FIND_VERSION} asd found.")
     if (Boost_FIND_COMPONENTS)
