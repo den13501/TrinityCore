@@ -3,16 +3,13 @@ name: CI
 on: [push]
 
 jobs:
-  build:
-    
+  build-linux:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, macOS-latest, windows-latest]
-
-    name: ${{ matrix.os }}-${{ matrix.luaversion }}
+        os: [ubuntu-latest]
+    name: ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
-    
     steps:
     - uses: actions/checkout@v2
     # Workaround for https://github.com/actions/virtual-environments/issues/10
@@ -20,23 +17,42 @@ jobs:
       shell: bash
       run: |
         echo "::set-env name=BOOST_ROOT::"
-    - name: Linux; install dependencies
-      if: matrix.os == 'ubuntu-latest'
+    - name: Install dependencies
       run: |
         sudo apt-get install git clang cmake make gcc g++ libssl-dev libbz2-dev libreadline-dev libncurses-dev libboost-all-dev p7zip
         sudo apt-get install mysql-server default-libmysqlclient-dev libmysqlclient-dev libmysql++-dev
-    - name: MacOS; install dependencies
-      if: matrix.os == 'macOS-latest'
-      run: |
-        brew install mysql || true
-        brew link --overwrite mysql
-        brew install openssl readline cmake boost
-    - name: build & install
-      shell: bash
+    - name: Build & install
       run: |
         mkdir build
         cd build
         cmake ../ -DWITH_WARNINGS=1 -DWITH_COREDEBUG=0 -DUSE_COREPCH=1 -DUSE_SCRIPTPCH=1 -DTOOLS=1 -DSCRIPTS=dynamic -DSERVERS=1 -DNOJEM=0 -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_FLAGS_DEBUG="-DNDEBUG" -DCMAKE_CXX_FLAGS_DEBUG="-DNDEBUG" -DCMAKE_INSTALL_PREFIX=check_install
+        cmake --build . --config Debug --parallel 2
+        cmake --install . --config Debug
+
+  build-mac:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macOS-latest]
+    name: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    steps:
+    - uses: actions/checkout@v2
+    # Workaround for https://github.com/actions/virtual-environments/issues/10
+    - name: Avoid to use GitHub Actions-installed boost
+      shell: bash
+      run: |
+        echo "::set-env name=BOOST_ROOT::"
+    - name: Install dependencies
+      run: |
+        brew install mysql || true
+        brew link --overwrite mysql
+        brew install openssl readline cmake boost
+    - name: Build & install
+      run: |
+        mkdir build
+        cd build
+        cmake ../ -G "Xcode" -DWITH_WARNINGS=1 -DWITH_COREDEBUG=0 -DUSE_COREPCH=1 -DUSE_SCRIPTPCH=1 -DTOOLS=1 -DSCRIPTS=dynamic -DSERVERS=1 -DNOJEM=0 -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_FLAGS_DEBUG="-DNDEBUG" -DCMAKE_CXX_FLAGS_DEBUG="-DNDEBUG" -DCMAKE_INSTALL_PREFIX=check_install
         cmake --build . --config Debug --parallel 2
         cmake --install . --config Debug
       env:
