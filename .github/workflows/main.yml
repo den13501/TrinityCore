@@ -28,9 +28,7 @@ jobs:
     - name: MacOS; install dependencies
       if: matrix.os == 'macOS-latest'
       run: |
-        brew uninstall openssl@1.1
-        brew unlink openssl@1.1
-        brew install mysql
+        brew install --force mysql
     - name: build & install
       shell: bash
       run: |
