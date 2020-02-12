@@ -25,6 +25,11 @@ jobs:
       run: |
         sudo apt-get install git clang cmake make gcc g++ libssl-dev libbz2-dev libreadline-dev libncurses-dev libboost-all-dev p7zip
         sudo apt-get install mysql-server default-libmysqlclient-dev libmysqlclient-dev libmysql++-dev
+    - name: MacOS; install dependencies
+      if: matrix.os == 'macOS-latest'
+      run: |
+        brew uninstall mysql
+        brew install mysql
     - name: build & install
       shell: bash
       run: |
