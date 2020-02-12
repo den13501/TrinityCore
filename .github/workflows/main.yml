@@ -43,6 +43,9 @@ jobs:
       shell: bash
       run: |
         echo "::set-env name=BOOST_ROOT::"
+    - name: Install dependencies
+      run: |
+        choco install openssl
     - name: Build & install
       shell: bash
       run: |
