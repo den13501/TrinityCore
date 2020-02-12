@@ -58,12 +58,16 @@ jobs:
     # install boost with choco due to https://github.com/actions/virtual-environments/issues/370
     - name: Install dependencies
       run: |
-        choco install openssl  boost-msvc-14.1
-    - name: Build & install
+        choco install --no-progress openssl boost-msvc-14.1
+    - name: Configure
       shell: bash
       run: |
         mkdir build
         cd build
         cmake ../ -DBoost_NO_BOOST_CMAKE=1 -DWITH_WARNINGS=1 -DWITH_COREDEBUG=0 -DUSE_COREPCH=1 -DUSE_SCRIPTPCH=1 -DTOOLS=1 -DSCRIPTS=dynamic -DSERVERS=1 -DNOJEM=0 -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_FLAGS_DEBUG="-DNDEBUG" -DCMAKE_CXX_FLAGS_DEBUG="-DNDEBUG" -DCMAKE_INSTALL_PREFIX=check_install
-        cmake --build . --config Debug --parallel 2
-        cmake --install . --config Debug
+    - name: Build
+      run: |
+        cmake --build build --config Debug --parallel 2
+    - name: Install
+      run: |
+        cmake --install build --config Debug
