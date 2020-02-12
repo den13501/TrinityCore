@@ -36,7 +36,7 @@ jobs:
         os: [windows-latest]
     name: ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
-    env:
+    # env:
       # Set boost root to choco installed path
       #BOOST_ROOT: C:\local\boost_1_67_0
       #BOOST_ROOT_1_67_0: C:\local\boost_1_67_0
