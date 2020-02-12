@@ -29,11 +29,11 @@ jobs:
         cmake --build . --config Debug --parallel 2
         cmake --install . --config Debug
 
-  build-mac:
+  build-windows:
     strategy:
       fail-fast: false
       matrix:
-        os: [macOS-latest]
+        os: [windows-latest]
     name: ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     steps:
@@ -43,22 +43,11 @@ jobs:
       shell: bash
       run: |
         echo "::set-env name=BOOST_ROOT::"
-    - name: Install dependencies
-      run: |
-        brew install mysql || true
-        brew link --overwrite mysql
-        brew install openssl readline cmake boost
     - name: Build & install
+      shell: bash
       run: |
         mkdir build
         cd build
-        cmake ../ -G "Xcode" -DCMAKE_THREAD_LIBS_INIT="-lpthread" \
-          -DCMAKE_HAVE_THREADS_LIBRARY=1 \
-          -DCMAKE_USE_WIN32_THREADS_INIT=0 \
-          -DCMAKE_USE_PTHREADS_INIT=1 \
-          -DTHREADS_PREFER_PTHREAD_FLAG=ON \
-          -DWITH_WARNINGS=1 -DWITH_COREDEBUG=0 -DUSE_COREPCH=1 -DUSE_SCRIPTPCH=1 -DTOOLS=1 -DSCRIPTS=dynamic -DSERVERS=1 -DNOJEM=0 -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_FLAGS_DEBUG="-DNDEBUG" -DCMAKE_CXX_FLAGS_DEBUG="-DNDEBUG" -DCMAKE_INSTALL_PREFIX=check_install
+        cmake ../ -DWITH_WARNINGS=1 -DWITH_COREDEBUG=0 -DUSE_COREPCH=1 -DUSE_SCRIPTPCH=1 -DTOOLS=1 -DSCRIPTS=dynamic -DSERVERS=1 -DNOJEM=0 -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_FLAGS_DEBUG="-DNDEBUG" -DCMAKE_CXX_FLAGS_DEBUG="-DNDEBUG" -DCMAKE_INSTALL_PREFIX=check_install
         cmake --build . --config Debug --parallel 2
         cmake --install . --config Debug
-      env:
-        MACOSX_DEPLOYMENT_TARGET: 10.15
