@@ -15,6 +15,11 @@ jobs:
     
     steps:
     - uses: actions/checkout@v2
+    # Workaround for https://github.com/actions/virtual-environments/issues/10
+    - name: Avoid to use GitHub Actions-installed boost
+      shell: bash
+      run: |
+        echo "::set-env name=BOOST_ROOT::"
     - name: install dependencies
       run: |
         sudo apt-get install git clang libssl-dev libbz2-dev libreadline-dev libncurses-dev mysql-server p7zip default-libmysqlclient-dev libmysqlclient-dev libmysql++-dev
