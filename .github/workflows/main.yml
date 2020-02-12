@@ -24,8 +24,8 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake ../ -DCMAKE_INSTALL_PREFIX=./installed -DELUNA_BUILD_EXAMPLE=1 -DELUNA_BUILD_TESTS=1 -DLUA_VERSION=${{ matrix.luaversion }}
-        cmake --build .
+        cmake ../ -DWITH_WARNINGS=1 -DWITH_COREDEBUG=0 -DUSE_COREPCH=1 -DUSE_SCRIPTPCH=1 -DTOOLS=1 -DSCRIPTS=dynamic -DSERVERS=1 -DNOJEM=0 -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_FLAGS="-Werror" -DCMAKE_CXX_FLAGS="-Werror" -DCMAKE_C_FLAGS_DEBUG="-DNDEBUG" -DCMAKE_CXX_FLAGS_DEBUG="-DNDEBUG" -DCMAKE_INSTALL_PREFIX=check_install
+        cmake --build . --config Debug -- -j 2
         cmake --install . --config Debug
       env:
         MACOSX_DEPLOYMENT_TARGET: 10.14
