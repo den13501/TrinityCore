@@ -28,8 +28,8 @@ jobs:
     - name: MacOS; install dependencies
       if: matrix.os == 'macOS-latest'
       run: |
+        brew install mysql || true
         brew link --overwrite mysql
-        brew install mysql
     - name: build & install
       shell: bash
       run: |
