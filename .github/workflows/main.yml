@@ -40,4 +40,4 @@ jobs:
         cmake --build . --config Debug --parallel 2
         cmake --install . --config Debug
       env:
-        MACOSX_DEPLOYMENT_TARGET: 10.14
+        MACOSX_DEPLOYMENT_TARGET: 10.15
