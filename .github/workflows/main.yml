@@ -18,7 +18,7 @@ jobs:
     - name: install dependencies
       run: |
         sudo apt-get install git clang libssl-dev libbz2-dev libreadline-dev libncurses-dev mysql-server p7zip default-libmysqlclient-dev libmysqlclient-dev libmysql++-dev
-        sudo apt-get install boost-system-dev boost-filesystem-dev boost-thread-dev boost-program-options-dev boost-iostreams-dev boost-regex-dev
+        sudo apt-get install libboost-system-dev libboost-filesystem-dev libboost-thread-dev libboost-program-options-dev libboost-iostreams-dev libboost-regex-dev
       if: matrix.os == 'ubuntu-latest'
     - name: build & install
       shell: bash
