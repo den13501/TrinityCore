@@ -28,7 +28,6 @@ jobs:
     - name: MacOS; install dependencies
       if: matrix.os == 'macOS-latest'
       run: |
-        brew uninstall mysql
         brew install mysql
     - name: build & install
       shell: bash
