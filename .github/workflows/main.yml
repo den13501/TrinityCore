@@ -20,11 +20,11 @@ jobs:
       shell: bash
       run: |
         echo "::set-env name=BOOST_ROOT::"
-    - name: install dependencies
-      run: |
-        sudo apt-get install git clang libssl-dev libbz2-dev libreadline-dev libncurses-dev mysql-server p7zip default-libmysqlclient-dev libmysqlclient-dev libmysql++-dev
-        sudo apt-get install libboost-system-dev libboost-filesystem-dev libboost-thread-dev libboost-program-options-dev libboost-iostreams-dev libboost-regex-dev
+    - name: Linux; install dependencies
       if: matrix.os == 'ubuntu-latest'
+      run: |
+        sudo apt-get install git clang cmake make gcc g++ libssl-dev libbz2-dev libreadline-dev libncurses-dev libboost-all-dev p7zip
+        sudo apt-get install mysql-server default-libmysqlclient-dev libmysqlclient-dev libmysql++-dev
     - name: build & install
       shell: bash
       run: |
