@@ -36,6 +36,9 @@ jobs:
         os: [windows-latest]
     name: ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
+    env:
+      BOOST_ROOT: C:\local\boost_1_67_0
+      BOOST_LIBRARYDIR: C:\local\boost_1_67_0\lib64-msvc-14.1\
     steps:
     - uses: actions/checkout@v2
     # Workaround for https://github.com/actions/virtual-environments/issues/10
