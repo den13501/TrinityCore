@@ -38,10 +38,10 @@ jobs:
     runs-on: ${{ matrix.os }}
     env:
       # Set boost root to choco installed path
-      BOOST_ROOT: C:\local\boost_1_67_0
-      BOOST_ROOT_1_67_0: C:\local\boost_1_67_0
-      BOOST_LIBRARYDIR: C:\local\boost_1_67_0\lib64-msvc-14.1\
-      Boost_NO_SYSTEM_PATHS: ON
+      #BOOST_ROOT: C:\local\boost_1_67_0
+      #BOOST_ROOT_1_67_0: C:\local\boost_1_67_0
+      #BOOST_LIBRARYDIR: C:\local\boost_1_67_0\lib64-msvc-14.1\
+      #Boost_NO_SYSTEM_PATHS: ON
     steps:
     - uses: actions/checkout@v2
     - name: Install dependencies
@@ -58,7 +58,8 @@ jobs:
     # install boost with choco due to https://github.com/actions/virtual-environments/issues/370
     - name: Install dependencies
       run: |
-        choco install --no-progress openssl boost-msvc-14.1
+        # boost-msvc-14.1
+        choco install --no-progress openssl
     - name: Configure
       shell: bash
       run: |
