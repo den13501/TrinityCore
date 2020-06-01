@@ -76,3 +76,4 @@ Read file [AUTHORS](AUTHORS).
 * [Website](https://www.trinitycore.org)
 * [Wiki](https://www.trinitycore.info)
 * [Forums](https://community.trinitycore.org)
+
