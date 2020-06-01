@@ -44,6 +44,10 @@ jobs:
       #Boost_NO_SYSTEM_PATHS: ON
     steps:
     - uses: actions/checkout@v2
+    - name: Set BOOST_ROOT
+      shell: bash
+      run: |
+        echo "::set-env name=BOOST_ROOT::$BOOST_ROOT_1_72_0"
     - name: Install dependencies
       shell: bash
       run: |
