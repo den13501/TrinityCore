@@ -8,6 +8,8 @@
 # WITHOUT ANY WARRANTY, to the extent permitted by law; without even the
 # implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
+set(Boost_NO_BOOST_CMAKE ON)
+
 if(WIN32)
  set(BOOST_DEBUG ON)
   if(DEFINED ENV{BOOST_ROOT})
