@@ -84,7 +84,7 @@ void RandomMovementGenerator<Creature>::DoInitialize(Creature* owner)
     owner->StopMoving();
 
     if (_wanderDistance == 0.f)
-        _wanderDistance = owner->GetRespawnRadius();
+        _wanderDistance = owner->GetWanderDistance();
 
     // Retail seems to let a creature walk 2 up to 10 splines before triggering a pause
     _wanderSteps = urand(2, 10);
@@ -182,7 +182,7 @@ void RandomMovementGenerator<Creature>::SetRandomLocation(Creature* owner)
     }
 
     // Call for creature group update
-    owner->SignalFormationMovement(position);
+    owner->SignalFormationMovement();
 }
 
 template<class T>
