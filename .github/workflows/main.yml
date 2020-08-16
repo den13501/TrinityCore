@@ -10,9 +10,11 @@ jobs:
         os: [ubuntu-latest]
     name: ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
-    env:
-      BOOST_ROOT : ${{ env.BOOST_ROOT_1_72_0 }}
     steps:
+    - name: Set BOOST_ROOT
+      shell: bash
+      run: |
+        echo "::set-env name=BOOST_ROOT::$BOOST_ROOT_1_72_0"
     - uses: actions/checkout@v2
     - name: Install dependencies
       run: |
@@ -29,6 +31,7 @@ jobs:
         echo $BOOST_INCLUDEDIR
         echo $BOOSTROOT
         echo $Boost_DIR
+        
     - name: Build & install
       run: |
         mkdir build
