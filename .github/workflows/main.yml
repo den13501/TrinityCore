@@ -98,10 +98,10 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake ../ -DBoost_NO_BOOST_CMAKE=1 -DWITH_WARNINGS=1 -DWITH_COREDEBUG=0 -DUSE_COREPCH=1 -DUSE_SCRIPTPCH=1 -DTOOLS=1 -DSCRIPTS=dynamic -DSERVERS=1 -DNOJEM=0 -DCMAKE_BUILD_TYPE=Debug -DCMAKE_C_FLAGS_DEBUG="-DNDEBUG" -DCMAKE_CXX_FLAGS_DEBUG="-DNDEBUG" -DCMAKE_INSTALL_PREFIX=check_install
+        cmake ../ -DBoost_NO_BOOST_CMAKE=1 -DWITH_WARNINGS=1 -DWITH_COREDEBUG=0 -DUSE_COREPCH=1 -DUSE_SCRIPTPCH=1 -DTOOLS=1 -DSCRIPTS=dynamic -DSERVERS=1 -DNOJEM=0 -DCMAKE_BUILD_TYPE=Release -DCMAKE_C_FLAGS_DEBUG="-DNDEBUG" -DCMAKE_CXX_FLAGS_DEBUG="-DNDEBUG" -DCMAKE_INSTALL_PREFIX=check_install
     - name: Build
       run: |
-        cmake --build build --config Debug --parallel 2
+        cmake --build build --config Release --parallel 2
     - name: Install
       run: |
-        cmake --install build --config Debug
+        cmake --install build --config Release
