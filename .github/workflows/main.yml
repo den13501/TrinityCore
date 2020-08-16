@@ -31,6 +31,8 @@ jobs:
         echo $BOOST_INCLUDEDIR
         echo $BOOSTROOT
         echo $Boost_DIR
+        echo foo
+        ls -lah $BOOST_ROOT
         
     - name: Build & install
       run: |
@@ -70,6 +72,8 @@ jobs:
         echo $BOOST_INCLUDEDIR
         echo $BOOSTROOT
         echo $Boost_DIR
+        echo foo
+        ls -lah $BOOST_ROOT
     # install boost with choco due to https://github.com/actions/virtual-environments/issues/370
     - name: Install dependencies
       run: |
