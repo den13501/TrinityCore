@@ -21,7 +21,7 @@ if(WIN32)
     message(FATAL_ERROR "No BOOST_ROOT environment variable could be found! Please make sure it is set and the points to your Boost installation.")
   endif()
 
-  set(Boost_USE_STATIC_LIBS        OFF)
+  set(Boost_USE_STATIC_LIBS        ON)
   set(Boost_USE_MULTITHREADED      ON)
   set(Boost_USE_STATIC_RUNTIME     OFF)
 endif()
