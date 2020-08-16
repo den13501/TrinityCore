@@ -30,6 +30,7 @@ if (CMAKE_VERSION VERSION_LESS "3.16.0")
   # boost's own cmake file adds extra compile definitions that cotire fails to pick up
   set(Boost_NO_BOOST_CMAKE ON)
 endif()
+set(Boost_NO_BOOST_CMAKE ON)
 
 include (CheckCXXSourceCompiles)
 
