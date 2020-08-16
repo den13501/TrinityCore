@@ -75,6 +75,10 @@ jobs:
         echo $Boost_DIR
         echo foo
         ls -lah $BOOST_ROOT
+        echo bar
+        ls -lah $BOOST_ROOT/lib
+        echo baz
+        ls -lah $BOOST_ROOT/libs
     # install boost with choco due to https://github.com/actions/virtual-environments/issues/370
     - name: Install dependencies
       run: |
