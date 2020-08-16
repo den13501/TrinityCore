@@ -19,7 +19,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install dependencies
       run: |
-        sudo apt-get install git clang cmake make gcc g++ libssl-dev libbz2-dev libreadline-dev libncurses-dev libboost-all-dev p7zip
+        sudo apt-get install git clang cmake make gcc g++ libssl-dev libbz2-dev libreadline-dev libncurses-dev p7zip
         sudo apt-get install mysql-server default-libmysqlclient-dev libmysqlclient-dev libmysql++-dev
     - name: Install dependencies
       shell: bash
