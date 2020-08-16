@@ -2,9 +2,6 @@ name: CI
 
 on: [push]
 
-env:
-  BOOST_ROOT : ${{ env.BOOST_ROOT_1_72_0 }}
-
 jobs:
   build-linux:
     strategy:
@@ -13,6 +10,8 @@ jobs:
         os: [ubuntu-latest]
     name: ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
+    env:
+      BOOST_ROOT : ${{ env.BOOST_ROOT_1_72_0 }}
     steps:
     - uses: actions/checkout@v2
     - name: Install dependencies
