@@ -2,6 +2,9 @@ name: CI
 
 on: [push]
 
+env:
+  BOOST_ROOT : ${{ env.BOOST_ROOT_1_72_0 }}
+
 jobs:
   build-linux:
     strategy:
@@ -16,6 +19,17 @@ jobs:
       run: |
         sudo apt-get install git clang cmake make gcc g++ libssl-dev libbz2-dev libreadline-dev libncurses-dev libboost-all-dev p7zip
         sudo apt-get install mysql-server default-libmysqlclient-dev libmysqlclient-dev libmysql++-dev
+    - name: Install dependencies
+      shell: bash
+      run: |
+        echo $PATH
+        echo $BOOST_ROOT
+        echo $BOOST_ROOT_1_67_0
+        echo $BOOST_LIBRARYDIR
+        echo $Boost_NO_SYSTEM_PATHS
+        echo $BOOST_INCLUDEDIR
+        echo $BOOSTROOT
+        echo $Boost_DIR
     - name: Build & install
       run: |
         mkdir build
