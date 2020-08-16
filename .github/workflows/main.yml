@@ -68,6 +68,9 @@ jobs:
       shell: bash
       run: |
         echo "::set-env name=BOOST_ROOT::$BOOST_ROOT_1_72_0"
+        echo "::set-env name=BOOST_INCLUDEDIR::$BOOST_ROOT_1_72_0/include"
+        echo "::set-env name=BOOST_LIBRARYDIR::$BOOST_ROOT_1_72_0/lib"
+        echo "::set-env name=Boost_NO_SYSTEM_PATHS::ON"
     - name: Install dependencies
       shell: bash
       run: |
