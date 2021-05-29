@@ -582,7 +582,7 @@ public:
         {
             instance->SetBossState(DATA_MALYGOS_EVENT, FAIL);
 
-            me->GetMap()->SetZoneOverrideLight(AREA_EYE_OF_ETERNITY, LIGHT_DEFAULT, 0, 1*IN_MILLISECONDS);
+            me->GetMap()->SetZoneOverrideLight(AREA_EYE_OF_ETERNITY, LIGHT_DEFAULT, 0, 1s);
 
             if (!summons.empty())
             {
@@ -700,7 +700,7 @@ public:
                     me->SetDisableGravity(true);
                     if (Creature* alexstraszaBunny = ObjectAccessor::GetCreature(*me, instance->GetGuidData(DATA_ALEXSTRASZA_BUNNY_GUID)))
                         me->SetFacingToObject(alexstraszaBunny);
-                    me->GetMap()->SetZoneOverrideLight(AREA_EYE_OF_ETERNITY, LIGHT_DEFAULT, LIGHT_ARCANE_RUNES, 5 * IN_MILLISECONDS);
+                    me->GetMap()->SetZoneOverrideLight(AREA_EYE_OF_ETERNITY, LIGHT_DEFAULT, LIGHT_ARCANE_RUNES, 5s);
                     events.ScheduleEvent(EVENT_FLY_OUT_OF_PLATFORM, 18s, 0, PHASE_TWO);
                     break;
                 case POINT_SURGE_OF_POWER_P_TWO:
@@ -712,7 +712,7 @@ public:
                     }
                     break;
                 case POINT_DESTROY_PLATFORM_P_TWO:
-                    me->GetMap()->SetZoneOverrideLight(AREA_EYE_OF_ETERNITY, LIGHT_DEFAULT, LIGHT_OBSCURE_SPACE, 1 * IN_MILLISECONDS);
+                    me->GetMap()->SetZoneOverrideLight(AREA_EYE_OF_ETERNITY, LIGHT_DEFAULT, LIGHT_OBSCURE_SPACE, 1s);
                     DoCast(me, SPELL_DESTROY_PLATFORM_CHANNEL);
                     events.ScheduleEvent(EVENT_MOVE_TO_P_THREE_POINT, 11s, 0, PHASE_TWO);
                     break;
@@ -908,7 +908,7 @@ public:
                         }
                         break;
                     case EVENT_LIGHT_DIMENSION_CHANGE:
-                        me->GetMap()->SetZoneOverrideLight(AREA_EYE_OF_ETERNITY, LIGHT_DEFAULT, LIGHT_CHANGE_DIMENSIONS, 2 * IN_MILLISECONDS);
+                        me->GetMap()->SetZoneOverrideLight(AREA_EYE_OF_ETERNITY, LIGHT_DEFAULT, LIGHT_CHANGE_DIMENSIONS, 2s);
                         break;
                     case EVENT_DELAY_MOVE_TO_DESTROY_P:
                         me->GetMotionMaster()->MovePoint(POINT_DESTROY_PLATFORM_P_TWO, MalygosPositions[0]);
@@ -918,7 +918,7 @@ public:
                         me->GetMotionMaster()->MovePoint(POINT_IDLE_P_THREE, MalygosPositions[4]);
                         break;
                     case EVENT_START_P_THREE:
-                        me->GetMap()->SetZoneOverrideLight(AREA_EYE_OF_ETERNITY, LIGHT_DEFAULT, LIGHT_OBSCURE_ARCANE_RUNES, 1 * IN_MILLISECONDS);
+                        me->GetMap()->SetZoneOverrideLight(AREA_EYE_OF_ETERNITY, LIGHT_DEFAULT, LIGHT_OBSCURE_ARCANE_RUNES, 1s);
                         DoCast(me, SPELL_CLEAR_ALL_DEBUFFS);
                         DoCast(me, SPELL_IMMUNE_CURSES);
                         me->RemoveFlag(UNIT_FIELD_FLAGS, UNIT_FLAG_NOT_SELECTABLE);
@@ -1853,6 +1853,7 @@ class ExactDistanceCheck
         float _dist;
 };
 
+// 56438 - Arcane Overload
 class spell_arcane_overload : public SpellScriptLoader
 {
     public:
@@ -2056,6 +2057,7 @@ class spell_malygos_destroy_platform_channel : public SpellScriptLoader
         }
 };
 
+// 59084 - Destroy Platform Boom Visual
 class spell_alexstrasza_bunny_destroy_platform_boom_visual : public SpellScriptLoader
 {
     public:
@@ -2093,6 +2095,7 @@ class spell_alexstrasza_bunny_destroy_platform_boom_visual : public SpellScriptL
         }
 };
 
+// 59099 - Destroy Platform Event
 class spell_alexstrasza_bunny_destroy_platform_event : public SpellScriptLoader
 {
     public:
@@ -2313,6 +2316,7 @@ class spell_malygos_surge_of_power_25 : public SpellScriptLoader
         }
 };
 
+// 61028 - Alexstrasza's Gift Beam
 class spell_alexstrasza_gift_beam : public SpellScriptLoader
 {
     public:
@@ -2357,6 +2361,7 @@ class spell_alexstrasza_gift_beam : public SpellScriptLoader
         }
 };
 
+// 61023 - Alexstrasza's Gift Visual
 class spell_alexstrasza_gift_beam_visual : public SpellScriptLoader
 {
     public:
